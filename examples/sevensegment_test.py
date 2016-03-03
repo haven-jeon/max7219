@@ -32,13 +32,14 @@ def clock(device, deviceId, seconds):
         hour = now.hour
         minute = now.minute
         second = now.second
-        dot = second % 2 == 0                # calculate blinking dot
+        colon = second % 2 == 0                # calculate blinking dot
         # Set hours
-        device.letter(deviceId, 4, int(hour / 10))     # Tens
-        device.letter(deviceId, 3, hour % 10, dot)     # Ones
+        device.letter(deviceId, 1, int(hour / 10))     # Tens
+        device.letter(deviceId, 2, hour % 10)     # Ones
+        device.letter(deviceId, 5, " " | colon << 7)
         # Set minutes
-        device.letter(deviceId, 2, int(minute / 10))   # Tens
-        device.letter(deviceId, 1, minute % 10)        # Ones
+        device.letter(deviceId, 3, int(minute / 10))   # Tens
+        device.letter(deviceId, 4, minute % 10)        # Ones
         time.sleep(1)
 
 
